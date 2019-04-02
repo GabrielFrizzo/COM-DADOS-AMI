@@ -1,3 +1,12 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
+$(() => {
+	$('#message').bind('input propertychange', function() {
+		const text = this.value
+
+		const binary = text.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join(' ');
+		
+		console.log(binary)
+		$('#binary_message').val(binary)
+	})
+
+	$('#message').focus()
+})
