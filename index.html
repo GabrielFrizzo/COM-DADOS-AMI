@@ -7,15 +7,17 @@
     <script src="plotly-latest.min.js"></script>
   </head>
   <body>
-    <form>
     <p> Digite sua mensagem: <input type='text' id='message'> </p>
     <p> Mensagem em binário: <input type='text' id='binary_message' disabled> </p>
     <p> Sua mensagem criptografada: <input type='text' id='crypto_message' disabled> </p>
 
+    <button type='button' id='send_button'> Enviar! </button>
     <div id="graph" style="width:1000px;height:500px;"></div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
+      require('./server.js')
+      require('./client.js')
     </script>
   </body>
 </html>
