@@ -6,7 +6,6 @@ function XYdata(binary) {
 		if (bit != y.slice(-1)[0]) {
 			x.push(count)
 			y.push(bit)
-
 		}
 		count += 1
 		x.push(count)
@@ -16,12 +15,46 @@ function XYdata(binary) {
 	return [{x: x, y: y}]
 }
 
+function cripto(message, key) {
+
+    var listKey = [];
+    var listMessage = [];
+    var listResult = [];
+
+    listKey = key.split('').map(function (char) { return char.charCodeAt(0) });          // codifica o char de acordo com a tabela ascii
+    listMessage = message.split('').map(function (char) { return char.charCodeAt(0) });       // codifica o char de acordo com a tabela ascii
+
+    var mSize = listMessage.length;
+    var kSize = listKey.length;
+    var count = 0;
+    var i = 0;
+    var j = 0;
+
+    while (count != mSize) {
+
+        if (j === kSize - 1) { j = 0; }
+        listResult.push(parseInt(listKey[j]) + parseInt(listMessage[i]));                 // soma o valor da mensagem com o valor da chave 
+        j++;
+        i++;
+        count++;
+    }
+
+    var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
+    console.log(criptoMessage)
+    return criptoMessage;
+}
+
 $('#message').bind('input propertychange', function() {
 	const text = this.value
 
 	const binary = text.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join('');
 	
 	$('#binary_message').val(binary)
+
+    const crypto_val = cripto(text, 'aaa')
+
+    $('#binary_message').val(binary)
+    $('#crypto_message').val(crypto_val)            // muda o campo
 
 	const layout = {
 		yaxis: {
@@ -35,8 +68,9 @@ $('#message').bind('input propertychange', function() {
 			showline: false
 		}
 		// margin: { t: 0 }
-	}
-	Plotly.newPlot( 'graph', XYdata(binary), layout )
+    }
+
+    Plotly.newPlot('graph', XYdata(crypto_val), layout)
 })
 
 $('#message').focus()
