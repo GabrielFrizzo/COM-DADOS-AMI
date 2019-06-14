@@ -44,6 +44,17 @@ function cripto(message, key) {
     return criptoMessage;
 }
 
+$('.togg_checkbox').bind('change', (event) => {
+	if(event.target.checked){
+		$('.togg_label').text('Client')
+		$('.togg_label').css('color', 'blue')
+		$('#send_button').disabled = true
+	} else {
+		$('.togg_label').text('Server')
+		$('.togg_label').css('color', 'red')
+	}
+})
+
 $('#message').bind('input propertychange', function() {
 	const text = this.value
 

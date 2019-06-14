@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="plotly-latest.min.js"></script>
   </head>
   <body>
+    <label class="switch">
+      <input type="checkbox" class='togg_checkbox'>
+      <span class="slider round"></span>
+      <span class="togg_label">Server</span>
+    </label>
     <p> Digite sua mensagem: <input type='text' id='message'> </p>
     <p> Mensagem em binário: <input type='text' id='binary_message' disabled> </p>
     <p> Sua mensagem criptografada: <input type='text' id='crypto_message' disabled> </p>
