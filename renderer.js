@@ -29,6 +29,11 @@ function XYdata(binary) {
 	return [{x: x, y: y}]
 }
 
+function fill_char(char) {
+	unfilled = char.toString(2)
+	return '0'.repeat(8-unfilled.length) + unfilled
+}
+
 function cripto(message, key) {
 
     var listKey = [];
@@ -53,8 +58,12 @@ function cripto(message, key) {
         count++;
     }
 
+<<<<<<< Updated upstream
 	var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
 	console.log(criptoMessage)
+=======
+    var criptoMessage = listResult.map(function (char) { return fill_char(char) }).join('')
+>>>>>>> Stashed changes
     return criptoMessage;
 }
 
@@ -131,7 +140,7 @@ $('.togg_checkbox').bind('change', (event) => {
 $('#message').bind('input propertychange', function() {
 	const text = this.value
 
-	const binary = text.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join('');
+	const binary = text.split('').map(function (char) { return fill_char(char.charCodeAt(0)) }).join('');
 	
 	$('#binary_message').val(binary)
 
