@@ -7,6 +7,7 @@ server.on('connection', (socket) => {
 	
 	socket.on('data', (data) => {
 		console.log('Received from client: ' + data)
+		$()
 	})
 })
 

@@ -1,3 +1,17 @@
+const layout = {
+	yaxis: {
+		range: [-1, 1],
+		autorange:false,
+		showgrid: false,
+		nticks: 3
+	},
+	xaxis: {
+		showgrid: false,
+		showline: false
+	}
+	// margin: { t: 0 }
+}
+
 function XYdata(binary) {
 	var x = [0]
 	var y = [binary[0]]
@@ -48,11 +62,18 @@ $('.togg_checkbox').bind('change', (event) => {
 	if(event.target.checked){
 		$('.togg_label').text('Client')
 		$('.togg_label').css('color', 'blue')
-		$('#send_button').disabled = true
+		$('#msg_lbl').text('Digite sua mensagem: ')
+		$('#message').attr('disabled', false)
+		$('#send_button').show()
 	} else {
 		$('.togg_label').text('Server')
 		$('.togg_label').css('color', 'red')
+		$('#msg_lbl').text('Mensagem recebida: ')
+		$('#message').attr('disabled', true)
+		$('#send_button').hide()
 	}
+	$(':text').val('')
+	Plotly.newPlot('graph', (0,0), layout)
 })
 
 $('#message').bind('input propertychange', function() {
@@ -67,21 +88,9 @@ $('#message').bind('input propertychange', function() {
     $('#binary_message').val(binary)
     $('#crypto_message').val(crypto_val)            // muda o campo
 
-	const layout = {
-		yaxis: {
-			range: [-1, 1],
-			autorange:false,
-			showgrid: false,
-			nticks: 3
-		},
-		xaxis: {
-			showgrid: false,
-			showline: false
-		}
-		// margin: { t: 0 }
-    }
-
     Plotly.newPlot('graph', XYdata(crypto_val), layout)
 })
+
+Plotly.newPlot('graph', (0,0), layout)
 
 $('#message').focus()
