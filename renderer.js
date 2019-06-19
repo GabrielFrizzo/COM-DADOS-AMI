@@ -58,12 +58,8 @@ function cripto(message, key) {
         count++;
     }
 
-<<<<<<< Updated upstream
-	var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
-	console.log(criptoMessage)
-=======
     var criptoMessage = listResult.map(function (char) { return fill_char(char) }).join('')
->>>>>>> Stashed changes
+
     return criptoMessage;
 }
 
@@ -75,7 +71,7 @@ function descripto(message, key) {
     var listResult = [];
 
     listKey = key.split('').map(function (char) { return char.charCodeAt(0) });          // codifica o char de acordo com a tabela ascii
-    listMessage = message.split('')//.map(function (char) { return char.charCodeAt(0) });       // codifica o char de acordo com a tabela ascii
+    listMessage = message.split('')       // codifica o char de acordo com a tabela ascii
 	console.log('listMessage: ' + listMessage)
 
     var mSize = listMessage.length;
