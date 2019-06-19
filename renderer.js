@@ -70,6 +70,7 @@ function ami(binary) {
 	return binaryVector
 }
 
+$("#app").hide();
 $("#logo").show();
 
 setTimeout(function () {$("#logo").hide();}, 2000);
