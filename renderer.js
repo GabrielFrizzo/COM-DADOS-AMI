@@ -16,8 +16,8 @@ function XYdata(binary) {
 	var x = [0]
 	var y = [binary[0]]
 	var count = 0
-	for (const bit of binary.substr(1)){
-		if (bit != y.slice(-1)[0]) {
+	for (const bit of binary.slice(1)){
+		if (bit != y.slice(-1)) {
 			x.push(count)
 			y.push(bit)
 		}
@@ -54,9 +54,27 @@ function cripto(message, key) {
     }
 
     var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
-    console.log(criptoMessage)
     return criptoMessage;
 }
+
+function ami(binary) {
+	var last = 1
+	binaryVector = binary.split('')
+
+	for (i=0; i < binaryVector.length; i++){
+		if(binaryVector[i] == 1){
+			binaryVector[i] = last
+			last = -last
+		}
+	}
+	return binaryVector
+}
+
+$("#logo").show();
+
+setTimeout(function () {$("#logo").hide();}, 2000);
+setTimeout(function () {$("#app").show();}, 2000);
+
 
 $('.togg_checkbox').bind('change', (event) => {
 	if(event.target.checked){
@@ -88,7 +106,7 @@ $('#message').bind('input propertychange', function() {
     $('#binary_message').val(binary)
     $('#crypto_message').val(crypto_val)            // muda o campo
 
-    Plotly.newPlot('graph', XYdata(crypto_val), layout)
+    Plotly.newPlot('graph', XYdata(ami(crypto_val)), layout)
 })
 
 Plotly.newPlot('graph', (0,0), layout)

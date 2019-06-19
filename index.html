@@ -8,6 +8,10 @@
     <script src="plotly-latest.min.js"></script>
   </head>
   <body>
+    <div align="center">
+      <img id="logo" src="ami-3.png" alt="logo" height="600" width="600"/>
+    </div>
+    <div id='app'>
     <label class="switch">
       <input type="checkbox" class='togg_checkbox'>
       <span class="slider round"></span>
@@ -21,6 +25,7 @@
     <input type='text' id='crypto_message' disabled> 
     <button type='button' id='send_button' style='display:none'> Enviar! </button>
     <div id="graph" style="width:1000px;height:500px;"></div>
+  </div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
