@@ -112,22 +112,31 @@ $("#app").hide();
 $("#logo").show();
 
 setTimeout(function () {$("#logo").hide();}, 2000);
-setTimeout(function () {$("#app").show();}, 2000);
+setTimeout(function () { $("#app").show(); }, 2000);
 
+$('#message').css('border-radius', '15px')
+$('#binary_message').css('border-radius', '15px')
+$('#crypto_message').css('border-radius', '15px')
+$('#ipText').css('border-radius', '15px')
+$('#ipDiv').hide();
 
 $('.togg_checkbox').bind('change', (event) => {
 	if(event.target.checked){
 		$('.togg_label').text('Client')
-		$('.togg_label').css('color', 'blue')
+        $('.togg_label').css('color', 'blue')
+
+        $('#ipDiv').show();
+
 		$('#msg_lbl').text('Digite sua mensagem: ')
-		$('#message').attr('disabled', false)
+        $('#message').attr('disabled', false)
 		$('#send_button').show()
 	} else {
 		$('.togg_label').text('Server')
 		$('.togg_label').css('color', 'red')
 		$('#msg_lbl').text('Mensagem recebida: ')
-		$('#message').attr('disabled', true)
-		$('#send_button').hide()
+        $('#message').attr('disabled', true)
+        $('#send_button').hide()
+        $('#ipDiv').hide();
 	}
 	$(':text').val('')
 	Plotly.newPlot('graph', (0,0), layout)
@@ -145,6 +154,7 @@ $('#message').bind('input propertychange', function() {
 
     $('#binary_message').val(binary)
     $('#crypto_message').val(crypto_val)            // muda o campo
+   
 
     Plotly.newPlot('graph', XYdata(ami(crypto_val)), layout)
 })
