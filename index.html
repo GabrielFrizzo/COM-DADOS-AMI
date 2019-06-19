@@ -20,6 +20,7 @@
 	<div id="ipDiv">
 		<p class='msg' id='ip'> IP destino: </p>
 		<input id='ipText' type='text'>
+		<button type='button' id='connection_button' style='display:none'> Conectar! </button>
 	</div>
     <p class='msg' id='msg_lbl'> Digite sua mensagem: </p>
     <input id='message' type='text' disabled>
@@ -29,7 +30,7 @@
     <input type='text' id='crypto_message' disabled> 
     <button type='button' id='send_button' style='display:none'> Enviar! </button>
     <div id="graph" style="width:1000px;height:500px;"></div>
-  </div>
+	</div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')

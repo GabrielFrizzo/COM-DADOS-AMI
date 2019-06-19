@@ -1,7 +1,7 @@
 const net = require('net')
 
 const client = new net.Socket()
-client.connect(1337, '10.181.3.245', () => {
+client.connect(1337, $('#ipText'), () => {
 	console.log('Connected!')
 	client.write('Hello, server! Love, Client.')
 })
