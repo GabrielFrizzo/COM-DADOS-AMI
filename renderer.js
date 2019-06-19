@@ -71,7 +71,7 @@ function descripto(message, key) {
     var listResult = [];
 
     listKey = key.split('').map(function (char) { return char.charCodeAt(0) });          // codifica o char de acordo com a tabela ascii
-    listMessage = message.split('')       // codifica o char de acordo com a tabela ascii
+    listMessage = message.match(/.{1,8}/g)       // codifica o char de acordo com a tabela ascii
 	console.log('listMessage: ' + listMessage)
 
     var mSize = listMessage.length;
@@ -83,14 +83,14 @@ function descripto(message, key) {
     while (count != mSize) {
 
         if (j === kSize - 1) { j = 0; }
-        listResult.push(parseInt(listMessage[i]) - parseInt(listKey[j]));                 // soma o valor da mensagem com o valor da chave 
+        listResult.push(parseInt(listMessage[i], 2) - parseInt(listKey[j]));                 // soma o valor da mensagem com o valor da chave 
         j++;
         i++;
         count++;
 	}
 	console.log('ListResult: ' + listResult)
 
-	var descriptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
+	var descriptoMessage = listResult.map(function (char) { return fill_char(char) }).join('')
 	console.log('Mesangem descriptografada: ' + descriptoMessage)
     return descriptoMessage;
 }
@@ -108,11 +108,10 @@ function ami(binary) {
 	return binaryVector
 }
 
-$("#app").hide();
-$("#logo").show();
-
-setTimeout(function () {$("#logo").hide();}, 2000);
-setTimeout(function () { $("#app").show(); }, 2000);
+$("#logo").show()
+console.log('aisudiasudhiashdiasu')
+setTimeout(function () { $("#logo").hide() }, 2000)
+setTimeout(function () { $("#app").show() }, 2000)
 
 $('#message').css('border-radius', '15px')
 $('#binary_message').css('border-radius', '15px')

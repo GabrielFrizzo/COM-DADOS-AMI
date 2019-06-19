@@ -11,7 +11,7 @@
     <div align="center">
       <img id="logo" src="ami-3.png" alt="logo" height="600" width="600"/>
     </div>
-    <div id='app'>
+    <div id='app' style='display:none'>
     <label class="switch">
       <input type="checkbox" class='togg_checkbox'>
       <span class="slider round"></span>
@@ -33,7 +33,7 @@
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
-      // require('./server.js')
+      require('./server.js')
       require('./client.js')
     </script>
   </body>
