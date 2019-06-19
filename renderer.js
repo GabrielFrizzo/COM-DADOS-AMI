@@ -53,8 +53,41 @@ function cripto(message, key) {
         count++;
     }
 
-    var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
+	var criptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
+	console.log(criptoMessage)
     return criptoMessage;
+}
+
+function descripto(message, key) {
+
+	console.log('mensagem criptografada: ' + message)
+    var listKey = [];
+    var listMessage = [];
+    var listResult = [];
+
+    listKey = key.split('').map(function (char) { return char.charCodeAt(0) });          // codifica o char de acordo com a tabela ascii
+    listMessage = message.split('')//.map(function (char) { return char.charCodeAt(0) });       // codifica o char de acordo com a tabela ascii
+	console.log('listMessage: ' + listMessage)
+
+    var mSize = listMessage.length;
+    var kSize = listKey.length;
+    var count = 0;
+    var i = 0;
+    var j = 0;
+
+    while (count != mSize) {
+
+        if (j === kSize - 1) { j = 0; }
+        listResult.push(parseInt(listMessage[i]) - parseInt(listKey[j]));                 // soma o valor da mensagem com o valor da chave 
+        j++;
+        i++;
+        count++;
+	}
+	console.log('ListResult: ' + listResult)
+
+	var descriptoMessage = listResult.map(function (char) { return char.toString(2); }).join('')
+	console.log('Mesangem descriptografada: ' + descriptoMessage)
+    return descriptoMessage;
 }
 
 function ami(binary) {
@@ -102,7 +135,8 @@ $('#message').bind('input propertychange', function() {
 	
 	$('#binary_message').val(binary)
 
-    const crypto_val = cripto(text, 'aaa')
+	const crypto_val = cripto(text, 'aaa')
+	const descypto_val = descripto(crypto_val, 'aaa')
 
     $('#binary_message').val(binary)
     $('#crypto_message').val(crypto_val)            // muda o campo
