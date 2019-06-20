@@ -153,11 +153,16 @@ $('#message').bind('input propertychange', function() {
 
     $('#binary_message').val(binary)
     $('#crypto_message').val(crypto_val)            // muda o campo
-   
 
     Plotly.newPlot('graph', XYdata(ami(crypto_val)), layout)
 })
 
-Plotly.newPlot('graph', (0,0), layout)
+Plotly.newPlot('graph', (0, 0), layout)
+
+
+$('#ipText').bind('input propertychange', function () {
+    module.exports.ipDestino = this.value
+})
+
 
 $('#message').focus()

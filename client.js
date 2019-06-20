@@ -1,10 +1,16 @@
 const net = require('net')
+let ipDestino = require('./renderer.js')
 
 const client = new net.Socket()
-client.connect(1337, $('#ipText'), () => {
-	console.log('Connected!')
-	client.write('Hello, server! Love, Client.')
+
+$('#connection_button').mouseup(() => {
+    client.connect(1337, ipDestino["ipDestino"], () => {
+        console.log('Connected to: ' + ipDestino["ipDestino"]);
+        client.write('Hello, server! Love, Client.');
+        $('#ipText').css('color', 'green');
+    })
 })
+
 
 client.on('data', (data) => {
 	console.log('Received from server: ' + data)
@@ -15,5 +21,6 @@ $('#send_button').mouseup(() => {
 })
 
 client.on('close', () => {
-	console.log('Connection closed!')
+    console.log('Connection closed!')
+    $('#ipText').css('color', 'red');
 })	
