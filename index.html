@@ -21,14 +21,25 @@
 		<p class='msg' id='ip'> IP destino: </p>
 		<input id='ipText' type='text'>
 		<button type='button' id='connection_button'> Conectar! </button>
-	</div>
+  </div>
+  <div id="clientDiv">
     <p class='msg' id='msg_lbl'> Digite sua mensagem: </p>
     <input id='message' type='text' disabled>
     <p class='msg'> Mensagem em binário: </p>
     <input type='text' id='binary_message' disabled>
     <p class='msg'> Mensagem criptografada: </p>
     <input type='text' id='crypto_message' disabled> 
-    <button type='button' id='send_button' style='display:none'> Enviar! </button>
+    <button type='button' id='send_button'> Enviar! </button>
+  </div>
+  <div id="serverDiv">
+    <p class='msg' id='msg_lbl_server'> Mensagem recebida: </p>
+    <input id='message_server' type='text' disabled>
+    <p class='msg'> Mensagem descriptografada: </p>
+    <input type='text' id='descrypto_message_server' disabled>
+    <p class='msg'> Mensagem criptografada: </p>
+    <input type='text' id='crypto_message_server' disabled> 
+  </div>
+
     <div id="graph" style="width:1000px;height:500px;"></div>
 	</div>
     <script>

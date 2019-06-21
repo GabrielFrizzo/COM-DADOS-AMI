@@ -65,14 +65,12 @@ function cripto(message, key) {
 
 function descripto(message, key) {
 
-	console.log('mensagem criptografada: ' + message)
     var listKey = [];
     var listMessage = [];
     var listResult = [];
 
-    listKey = key.split('').map(function (char) { return char.charCodeAt(0) });          // codifica o char de acordo com a tabela ascii
-    listMessage = message.match(/.{1,8}/g)       // codifica o char de acordo com a tabela ascii
-	console.log('listMessage: ' + listMessage)
+    listKey = key.split('').map(function (char) { return char.charCodeAt(0) });  // codifica o char de acordo com a tabela ascii
+	listMessage = message.match(/.{1,8}/g)       // codifica o char de acordo com a tabela ascii
 
     var mSize = listMessage.length;
     var kSize = listKey.length;
@@ -88,10 +86,8 @@ function descripto(message, key) {
         i++;
         count++;
 	}
-	console.log('ListResult: ' + listResult)
 
 	var descriptoMessage = listResult.map(function (char) { return fill_char(char) }).join('')
-	console.log('Mesangem descriptografada: ' + descriptoMessage)
     return descriptoMessage;
 }
 
@@ -109,37 +105,45 @@ function ami(binary) {
 }
 
 $("#logo").show()
-console.log('aisudiasudhiashdiasu')
 setTimeout(function () { $("#logo").hide() }, 2000)
-setTimeout(function () { $("#app").show() }, 2000)
+setTimeout(function () {
+	$("#app").show() 
+	$('#clientDiv').hide()
+	$('#serverDiv').hide()
+	}, 2000)
 
 $('#message').css('border-radius', '15px')
 $('#binary_message').css('border-radius', '15px')
 $('#crypto_message').css('border-radius', '15px')
+$('#crypto_message_server').css('border-radius', '15px')
+$('#descrypto_message_server').css('border-radius', '15px')
+$('#message_server').css('border-radius', '15px')
 $('#ipText').css('border-radius', '15px')
 $('#ipDiv').hide();
 
+
 $('.togg_checkbox').bind('change', (event) => {
-	if(event.target.checked){
+	if(event.target.checked){ 						//Client
 		$('.togg_label').text('Client')
-        $('.togg_label').css('color', 'blue')
-
-        $('#ipDiv').show();
-
-		$('#msg_lbl').text('Digite sua mensagem: ')
+		$('.togg_label').css('color', 'blue')
+		
+		$('#ipDiv').show();
+		$('#clientDiv').show()
+		$('#serverDiv').hide()
         $('#message').attr('disabled', false)
-		$('#send_button').show()
-	} else {
+
+	} else { 										//Server
 		$('.togg_label').text('Server')
 		$('.togg_label').css('color', 'red')
-		$('#msg_lbl').text('Mensagem recebida: ')
-        $('#message').attr('disabled', true)
-        $('#send_button').hide()
+
+		$('#clientDiv').hide()
+		$('#serverDiv').show()
         $('#ipDiv').hide();
 	}
 	$(':text').val('')
 	Plotly.newPlot('graph', (0,0), layout)
 })
+
 
 $('#message').bind('input propertychange', function() {
 	const text = this.value
@@ -149,13 +153,27 @@ $('#message').bind('input propertychange', function() {
 	$('#binary_message').val(binary)
 
 	const crypto_val = cripto(text, 'aaa')
-	const descypto_val = descripto(crypto_val, 'aaa')
-
-    $('#binary_message').val(binary)
-    $('#crypto_message').val(crypto_val)            // muda o campo
+	$('#crypto_message').val(crypto_val)            // muda o campo
+   
 
     Plotly.newPlot('graph', XYdata(ami(crypto_val)), layout)
 })
+
+
+$('#send_button').mouseup(() => {
+	setTimeout(function () { 
+		var mensagem = require("./server")
+		var msg = mensagem['mensagem'].toString()
+		$('#crypto_message_server').val(msg)
+		$('#descrypto_message_server').val(descripto(msg, 'aaa'))
+
+		var palavra = descripto(msg, 'aaa').match(/([10]{8}|\s+)/g).map(function(fromBinary){
+            return String.fromCharCode(parseInt(fromBinary, 2) );
+        }).join('');
+		$('#message_server').val(palavra)
+	}, 500)
+})
+
 
 Plotly.newPlot('graph', (0, 0), layout)
 

@@ -5,9 +5,8 @@ const client = new net.Socket()
 
 $('#connection_button').mouseup(() => {
     client.connect(1337, ipDestino["ipDestino"], () => {
-        console.log('Connected to: ' + ipDestino["ipDestino"]);
-        client.write('Hello, server! Love, Client.');
-        $('#ipText').css('color', 'green');
+        console.log('Connected to: ' + ipDestino["ipDestino"])
+        $('#ipText').css('color', 'green')
     })
 })
 
@@ -17,7 +16,7 @@ client.on('data', (data) => {
 })
 
 $('#send_button').mouseup(() => {
-	client.write($('#binary_message').val())
+    client.write($('#crypto_message').val())
 })
 
 client.on('close', () => {
