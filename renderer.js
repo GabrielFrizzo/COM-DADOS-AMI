@@ -179,6 +179,6 @@ function showMessage(dataReceived) {
         }).join('');
         $('#message_server').val(palavra)
     }, 500)
-})
+}
 
 module.exports.showMessage = showMessage
