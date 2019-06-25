@@ -169,7 +169,7 @@ function showMessage(dataReceived) {
     console.log("info recebida: " + dataReceived)
     setTimeout(function () {
         var mensagem = require("./server")
-        var msg = mensagem['mensagem'].toString()
+        var msg = mensagem["mensagem"]
         $('#crypto_message_server').val(msg)
         $('#descrypto_message_server').val(descripto(msg, 'aaa'))
 
