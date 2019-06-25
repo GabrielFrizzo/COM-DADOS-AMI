@@ -121,7 +121,6 @@ $('#message_server').css('border-radius', '15px')
 $('#ipText').css('border-radius', '15px')
 $('#ipDiv').hide();
 
-
 $('.togg_checkbox').bind('change', (event) => {
 	if(event.target.checked){ 						//Client
 		$('.togg_label').text('Client')

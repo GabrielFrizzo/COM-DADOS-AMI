@@ -11,7 +11,7 @@ server.on('connection', (socket) => {
 		mensagem = data
 		console.log('Received from client: ' + mensagem)
         //module.exports.mensagem = mensagem
-        rederer.showMessage(mensagem)
+        renderer.showMessage(mensagem)
 	})
 })
 
