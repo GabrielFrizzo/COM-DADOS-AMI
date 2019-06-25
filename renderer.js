@@ -167,17 +167,22 @@ $('#message').focus()
 
 function showMessage(dataReceived) {
     console.log("info recebida: " + dataReceived)
-    setTimeout(function (dataReceived) {
-        //var mensagem = require("./server")
-        //var msg = mensagem["mensagem"]
-        $('#crypto_message_server').val(dataReceived)
-        $('#descrypto_message_server').val(descripto(dataReceived, 'aaa'))
+    //setTimeout(function (dataReceived) {
+    //var mensagem = require("./server")
+    //var msg = mensagem["mensagem"]
+    console.log("ok: " + dataReceived)
+    $('#crypto_message_server').val(dataReceived.toString())
+    $('#descrypto_message_server').val(descripto(dataReceived.toString(), 'aaa'))
 
-        var palavra = descripto(dataReceived, 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
-            return String.fromCharCode(parseInt(fromBinary, 2));
-        }).join('');
-        $('#message_server').val(palavra)
-    }, 500)
+    var palavra = descripto(dataReceived.toString(), 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
+        return String.fromCharCode(parseInt(fromBinary, 2));
+    }).join('');
+    $('#message_server').val(palavra)
+    console.log(palavra)
+
+    Plotly.newPlot('graph', XYdata(ami(dataReceived.toString())), layout)
+
+//}, 500)
 }
 
 module.exports.showMessage = showMessage
