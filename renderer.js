@@ -167,13 +167,13 @@ $('#message').focus()
 
 function showMessage(dataReceived) {
     console.log("info recebida: " + dataReceived)
-    setTimeout(function () {
-        var mensagem = require("./server")
-        var msg = mensagem["mensagem"]
-        $('#crypto_message_server').val(msg)
-        $('#descrypto_message_server').val(descripto(msg, 'aaa'))
+    setTimeout(function (dataReceived) {
+        //var mensagem = require("./server")
+        //var msg = mensagem["mensagem"]
+        $('#crypto_message_server').val(dataReceived)
+        $('#descrypto_message_server').val(descripto(dataReceived, 'aaa'))
 
-        var palavra = descripto(msg, 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
+        var palavra = descripto(dataReceived, 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
             return String.fromCharCode(parseInt(fromBinary, 2));
         }).join('');
         $('#message_server').val(palavra)
