@@ -109,7 +109,7 @@ setTimeout(function () { $("#logo").hide() }, 2000)
 setTimeout(function () {
 	$("#app").show() 
 	$('#clientDiv').hide()
-	$('#serverDiv').hide()
+	$('#serverDiv').show()
 	}, 2000)
 
 $('#message').css('border-radius', '15px')
@@ -167,9 +167,6 @@ $('#message').focus()
 
 function showMessage(dataReceived) {
     console.log("info recebida: " + dataReceived)
-    //setTimeout(function (dataReceived) {
-    //var mensagem = require("./server")
-    //var msg = mensagem["mensagem"]
     console.log("ok: " + dataReceived)
     $('#crypto_message_server').val(dataReceived.toString())
     $('#descrypto_message_server').val(descripto(dataReceived.toString(), 'aaa'))
@@ -181,8 +178,6 @@ function showMessage(dataReceived) {
     console.log(palavra)
 
     Plotly.newPlot('graph', XYdata(ami(dataReceived.toString())), layout)
-
-//}, 500)
 }
 
 module.exports.showMessage = showMessage
