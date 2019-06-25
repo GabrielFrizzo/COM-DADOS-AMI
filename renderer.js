@@ -144,7 +144,6 @@ $('.togg_checkbox').bind('change', (event) => {
 	Plotly.newPlot('graph', (0,0), layout)
 })
 
-
 $('#message').bind('input propertychange', function() {
 	const text = this.value
 
@@ -159,28 +158,27 @@ $('#message').bind('input propertychange', function() {
     Plotly.newPlot('graph', XYdata(ami(crypto_val)), layout)
 })
 
-
-$('#send_button').mouseup(() => {
-	setTimeout(function () { 
-		var mensagem = require("./server")
-		var msg = mensagem['mensagem'].toString()
-		$('#crypto_message_server').val(msg)
-		$('#descrypto_message_server').val(descripto(msg, 'aaa'))
-
-		var palavra = descripto(msg, 'aaa').match(/([10]{8}|\s+)/g).map(function(fromBinary){
-            return String.fromCharCode(parseInt(fromBinary, 2) );
-        }).join('');
-		$('#message_server').val(palavra)
-	}, 500)
-})
-
-
 Plotly.newPlot('graph', (0, 0), layout)
-
 
 $('#ipText').bind('input propertychange', function () {
     module.exports.ipDestino = this.value
 })
 
-
 $('#message').focus()
+
+function showMessage(dataReceived) {
+    console.log("info recebida: " + dataReceived)
+    setTimeout(function () {
+        var mensagem = require("./server")
+        var msg = mensagem['mensagem'].toString()
+        $('#crypto_message_server').val(msg)
+        $('#descrypto_message_server').val(descripto(msg, 'aaa'))
+
+        var palavra = descripto(msg, 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
+            return String.fromCharCode(parseInt(fromBinary, 2));
+        }).join('');
+        $('#message_server').val(palavra)
+    }, 500)
+})
+
+module.exports.showMessage = showMessage

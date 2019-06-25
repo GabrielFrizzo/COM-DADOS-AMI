@@ -1,5 +1,6 @@
 const net = require('net')
 let mensagem
+let renderer = require('./renderer.js')
 
 const server = net.createServer()
 
@@ -9,9 +10,9 @@ server.on('connection', (socket) => {
 	socket.on('data', (data) => {
 		mensagem = data
 		console.log('Received from client: ' + mensagem)
-		module.exports.mensagem = mensagem
+        //module.exports.mensagem = mensagem
+        rederer.showMessage(mensagem)
 	})
 })
-
 
 server.listen(1337)
