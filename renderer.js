@@ -31,7 +31,7 @@ function XYdata(binary) {
 
 function fill_char(char) {
 	unfilled = char.toString(2)
-	return '0'.repeat(8-unfilled.length) + unfilled
+	return '0'.repeat(9-unfilled.length) + unfilled
 }
 
 function cripto(message, key) {
@@ -70,7 +70,7 @@ function descripto(message, key) {
     var listResult = [];
 
     listKey = key.split('').map(function (char) { return char.charCodeAt(0) });  // codifica o char de acordo com a tabela ascii
-	listMessage = message.match(/.{1,8}/g)       // codifica o char de acordo com a tabela ascii
+	listMessage = message.match(/.{1,9}/g)       // codifica o char de acordo com a tabela ascii
 
     var mSize = listMessage.length;
     var kSize = listKey.length;
@@ -171,7 +171,7 @@ function showMessage(dataReceived) {
     $('#crypto_message_server').val(dataReceived.toString())
     $('#descrypto_message_server').val(descripto(dataReceived.toString(), 'aaa'))
 
-    var palavra = descripto(dataReceived.toString(), 'aaa').match(/([10]{8}|\s+)/g).map(function (fromBinary) {
+    var palavra = descripto(dataReceived.toString(), 'aaa').match(/([10]{9}|\s+)/g).map(function (fromBinary) {
         return String.fromCharCode(parseInt(fromBinary, 2));
     }).join('');
     $('#message_server').val(palavra)
